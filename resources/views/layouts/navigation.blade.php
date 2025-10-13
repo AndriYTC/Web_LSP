@@ -19,7 +19,7 @@
                     {{-- 🔥 Menu khusus admin --}}
                     @auth
                         @if (auth()->user()->role === 'admin')
-                            <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                                 {{ __('User Management') }}
                             </x-nav-link>
                         @endif
@@ -89,7 +89,7 @@
             {{-- 🔥 Tambahkan juga menu admin di versi mobile --}}
             @auth
                 @if (auth()->user()->role === 'admin')
-                    <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                    <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                         {{ __('User Management') }}
                     </x-responsive-nav-link>
                 @endif
@@ -124,7 +124,7 @@
 {{-- 🔥 Tambahkan juga menu admin di versi mobile --}}
 @auth
     @if (auth()->user()->role === 'admin')
-        <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+        <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
             {{ __('User Management') }}
         </x-responsive-nav-link>
     @endif

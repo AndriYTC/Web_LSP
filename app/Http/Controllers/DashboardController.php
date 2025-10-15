@@ -8,21 +8,14 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        // Pastikan hanya admin yang bisa mengakses dashboard
-        $this->middleware(function ($request, $next) {
-            if (!auth()->check() || auth()->user()->role !== 'admin') {
-                return redirect('/')->with('error', 'Akses ditolak, hanya admin yang dapat membuka dashboard.');
-            }
-            return $next($request);
-        });
+        // Hanya pastikan sudah login
+        $this->middleware('auth');
     }
 
     public function index()
     {
         $user = auth()->user();
 
-        return view('dashboard', [
-            'user' => $user,
-        ]);
+        return view('dashboard', compact('user'));
     }
 }

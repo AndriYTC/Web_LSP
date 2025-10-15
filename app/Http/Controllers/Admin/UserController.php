@@ -8,16 +8,17 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * @method void middleware(array|string $middleware)
-     */
     public function __construct()
     {
-        // Middleware untuk memastikan hanya admin yang bisa akses controller ini
         $this->middleware(function ($request, $next) {
+            // Jika belum login atau bukan admin
             if (!auth()->check() || auth()->user()->role !== 'admin') {
-                abort(403, 'Unauthorized');
+                // Redirect ke dashboard dengan pesan error
+                return redirect()
+                    ->route('dashboard')
+                    ->with('error', 'Anda tidak memiliki akses ke halaman ini.');
             }
+
             return $next($request);
         });
     }
@@ -52,7 +53,7 @@ class UserController extends Controller
 
         $user->update($request->only('name', 'email', 'role'));
 
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
     /**

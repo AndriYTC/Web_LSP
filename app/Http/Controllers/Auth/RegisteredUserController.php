@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'user', 
+            'role' => $request->role ?? 'user',
         ]);
 
         event(new Registered($user));
@@ -52,6 +52,7 @@ class RegisteredUserController extends Controller
         }
 
         return redirect()->intended('/');
+        
     }
 
 

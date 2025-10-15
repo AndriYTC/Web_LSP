@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\PasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -38,6 +39,10 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::put('/password', [PasswordController::class, 'updatePassword'])->name('password.update');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->middleware('web')
+    ->name('logout');
 
     // CRUD user (hanya admin)
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

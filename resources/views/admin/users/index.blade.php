@@ -14,7 +14,7 @@
 
                 <table class="w-full border-collapse">
                     <thead>
-                        <tr class="border-b border-gray-600 text-left">
+                        <tr class="border-b border-gray-600 dark:text-blue-300 text-blue-200 text-left">
                             <th class="p-2">#</th>
                             <th class="p-2">Name</th>
                             <th class="p-2">Email</th>
@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                            <tr class="border-b border-gray-700">
+                            <tr class="border-b border-gray-700 dark:text-gray-200">
                                 <td class="p-2">{{ $loop->iteration }}</td>
                                 <td class="p-2">{{ $user->name }}</td>
                                 <td class="p-2">{{ $user->email }}</td>

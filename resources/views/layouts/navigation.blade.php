@@ -19,9 +19,22 @@
                     {{-- 🔥 Menu khusus admin --}}
                     @auth
                         @if (auth()->user()->role === 'admin')
-                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                                {{ __('User Management') }}
-                            </x-nav-link>
+                            <!-- Menu khusus admin -->
+                            <div class="mt-4">
+                                <h3 class="font-semibold text-lg text-gray-700 dark:text-gray-200">Admin Panel</h3>
+                                <ul class="mt-2 space-y-2">
+                                    <li>
+                                        <a href="{{ route('users.index') }}" class="text-blue-600 hover:underline">
+                                            User Management
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('dashboard') }}" class="text-blue-600 hover:underline">
+                                            Laporan Sistem
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         @endif
                     @endauth
                 </div>

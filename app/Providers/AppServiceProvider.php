@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -17,7 +18,13 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-         $this->routes(function () {
+        if (env('APP_ENV') === 'production') {
+            // Ini akan memastikan semua URL aset yang dihasilkan oleh Laravel
+            // dan @vite() menggunakan 'https'
+            URL::forceScheme('https');
+        }
+
+        $this->routes(function () {
         Route::middleware('web')
             ->group(base_path('routes/web.php'));
     });

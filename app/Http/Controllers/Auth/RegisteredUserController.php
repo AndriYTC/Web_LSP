@@ -30,10 +30,31 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'name' => ['required', 'string','unique:' . User::class, 'max:255'],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:' . User::class,
+                'regex:/@gmail\.com$/i'
+            ],
             'role' => ['nullable', 'in:admin,user'], // validasi role
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],
+        [
+            'name.required' => 'Nama wajib diisi',
+            'name.unique' => 'Nama sudah digunakan',
+            'name.max' => 'Nama maksimal 255 karakter',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah digunakan',
+            'email.regex' => 'format email harus "example@gmail.com"',
+            'password.required' => 'Password wajib diisi',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai',
+            'password.min' => 'Password minimal 8 karakter',
+
         ]);
 
         $user = User::create([
@@ -52,7 +73,7 @@ class RegisteredUserController extends Controller
         }
 
         return redirect()->intended('/');
-        
+
     }
 
 

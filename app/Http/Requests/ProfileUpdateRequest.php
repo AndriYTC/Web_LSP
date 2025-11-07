@@ -23,8 +23,19 @@ class ProfileUpdateRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
+                'unique:' . User::class,
+                'regex:/@gmail\.com$/i'
             ],
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama wajib diisi',
+            'name.max' => 'Nama maksimal 255 karakter',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.regex' => 'Email harus menggunakan "example@gmail.com"',
         ];
     }
 }

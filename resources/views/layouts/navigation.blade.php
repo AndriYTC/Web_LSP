@@ -25,12 +25,6 @@
                                 {{ __('User Management') }}
                             </x-nav-link>
                             </div>
-
-                            {{-- <div class="mt-4 flex items-center">
-                                <a href="{{ route('users.index') }}" class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-100">
-                                    User Management
-                                </a>
-                            </div> --}}
                         @endif
                     @endauth
                 </div>

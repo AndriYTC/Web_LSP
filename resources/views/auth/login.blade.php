@@ -34,9 +34,9 @@
         </div>
         <!-- Tombol Login -->
         <div class="flex items-center justify-between mt-4">
-            <div class="mt-3 ml-4">
+            <div class="mt-3">
                 <!-- Tombol Kembali -->
-                <div class="left-1 mr-4">
+                <div class="left-1">
                     <a href="{{ url('/') }}"
                         class="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-900 dark:hover:text-white transition">
                         <!-- Icon Panah -->

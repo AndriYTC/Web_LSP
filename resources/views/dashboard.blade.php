@@ -12,24 +12,6 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
-                    @if (auth()->user()->role === 'admin')
-                        <!-- Menu khusus admin -->
-                        <div class="mt-4">
-                            <h3 class="font-semibold text-lg text-gray-700 dark:text-gray-200">Admin Panel</h3>
-                            <ul class="mt-2 space-y-2">
-                                <li>
-                                    <a href="{{ route('users.index') }}" class="text-blue-600 hover:underline">
-                                        User Management
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('dashboard') }}" class="text-blue-600 hover:underline">
-                                        Laporan Sistem
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

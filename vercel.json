@@ -1,26 +1,23 @@
 {
   "version": 2,
+  "functions": {
+    "public/index.php": {
+      "runtime": "vercel-php@0.7.4",
+      "includeFiles": [
+        "storage/**",
+        "bootstrap/cache/**"
+      ]
+    }
+  },
   "builds": [
-    {
-      "src": "public/index.php",
-      "use": "vercel-php@0.7.4"
-    },
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "public/build"
-      }
+      "config": { "distDir": "public/build" }
     }
   ],
   "routes": [
-    {
-      "src": "/build/(.*)",
-      "dest": "/public/build/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.php"
-    }
+    { "src": "/build/(.*)", "dest": "public/build/$1" },
+    { "src": "/(.*)", "dest": "public/index.php" }
   ]
 }

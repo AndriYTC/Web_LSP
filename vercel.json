@@ -4,25 +4,15 @@
     {
       "src": "public/index.php",
       "use": "vercel-php@0.7.4",
-      "config": {
-        "includeFiles": "vendor/**"
-      }
+      "config": { "includeFiles": "vendor/**" }
     },
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "public/build"
-      }
+      "src": "public/build/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.php"
-    }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/public/index.php" }
   ]
 }

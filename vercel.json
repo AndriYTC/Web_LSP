@@ -3,13 +3,14 @@
   "functions": {
     "public/index.php": {
       "runtime": "vercel-php@0.7.4",
-      "includeFiles": [
-        "storage/**",
-        "bootstrap/cache/**"
-      ]
+      "includeFiles": "vendor/**"
     }
   },
   "builds": [
+    {
+      "src": "public/index.php",
+      "use": "vercel-php@0.7.4"
+    },
     {
       "src": "package.json",
       "use": "@vercel/static-build",
@@ -17,7 +18,7 @@
     }
   ],
   "routes": [
-    { "src": "/build/(.*)", "dest": "public/build/$1" },
-    { "src": "/(.*)", "dest": "public/index.php" }
+    { "src": "/build/(.*)", "dest": "/public/build/$1" },
+    { "src": "/(.*)", "dest": "/public/index.php" }
   ]
 }

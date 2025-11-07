@@ -3,6 +3,7 @@
     "file": "assets/app-DMAHA-7f.css",
     "src": "resources/css/app.css",
     "isEntry": true,
+    "name": "app",
     "names": [
       "app.css"
     ]

@@ -1,18 +1,31 @@
 {
-  "version": 2,
-  "builds": [
+    "version": 2,
+    "builds": [
+        {
+            "src": "public/index.php",
+            "use": "vercel-php@0.7.4",
+            "config": { "includeFiles": "vendor/**" }
+        },
+        {
+            "src": "public/build/**",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+
+        { "src": "/build/(.*)", "dest": "/public/build/$1" },
+
+
+        { "src": "/(.*\\.(css|js|ico|jpg|jpeg|png|gif|svg|webp|txt|woff|woff2|ttf|eot))", "dest": "/public/$1" },
+
+    
+        { "src": "/(.*)", "dest": "/public/index.php" }
+    ],
+    "env":
     {
-      "src": "public/index.php",
-      "use": "vercel-php@0.7.4",
-      "config": { "includeFiles": "vendor/**" }
-    },
-    {
-      "src": "public/build/**",
-      "use": "@vercel/static"
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_URL": "https://web-lsp-ex1v.vercel.app/",
+        "APP_CONFIG_CACHE": "/tmp/config.php"
     }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/public/index.php" }
-  ]
 }

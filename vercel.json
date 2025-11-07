@@ -1,18 +1,16 @@
 {
   "version": 2,
-  "functions": {
-    "public/index.php": {
-      "runtime": "vercel-php@0.6.0"
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/favicon.ico",
-      "dest": "/public/favicon.ico",
-      "headers": {
-        "cache-control": "public, max-age=0, must-revalidate"
-      }
+      "src": "public/index.php",
+      "use": "vercel-php@0.6.0"
     },
+    {
+      "src": "public/build/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
     {
       "src": "/build/(.*)",
       "dest": "/public/build/$1"

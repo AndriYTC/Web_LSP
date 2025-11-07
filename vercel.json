@@ -6,18 +6,21 @@
       "use": "vercel-php@0.7.4"
     },
     {
-      "src": "public/build/**/*",
-      "use": "@vercel/static"
+      "src": "vite.config.js",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public/build"
+      }
     }
   ],
   "routes": [
     {
       "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+      "dest": "public/build/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.php"
+      "dest": "public/index.php"
     }
   ]
 }

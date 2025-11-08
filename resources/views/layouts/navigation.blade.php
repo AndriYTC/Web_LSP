@@ -18,7 +18,7 @@
 
                     {{-- 🔥 Menu khusus admin --}}
                     @auth
-                        @if (auth()->user()->role === 'admin')
+                        @if (in_array(auth()->user()->role, ['developers', 'admin']))
                             <!-- Menu khusus admin -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
@@ -91,7 +91,7 @@
 
             {{-- 🔥 Tambahkan juga menu admin di versi mobile --}}
             @auth
-                @if (auth()->user()->role === 'admin')
+                @if (in_array(auth()->user()->role, ['developers', 'admin']))
                     <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                         {{ __('User Management') }}
                     </x-responsive-nav-link>

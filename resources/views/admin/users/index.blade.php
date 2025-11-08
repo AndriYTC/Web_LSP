@@ -32,14 +32,24 @@
                                 <td class="p-2">{{ ucfirst($user->role) }}</td>
                                 <td class="p-2">{{ $user->created_at->format('d M Y') }}</td>
                                 <td class="p-2 text-center">
-                                    <a href="{{ route('users.edit', $user) }}" class="text-blue-500 hover:underline">Edit</a>
-                                    <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Delete this user?')">
+                                    <a href="{{ route('users.edit', $user) }}"
+                                        class="text-blue-500 hover:underline">Edit</a>
+
+                                    @if($user->role !== 'developers')
+                                        <button type="button" class="text-red-500 hover:underline"
+                                            onclick="openDeleteModal({{ $user->id }}, '{{ $user->name }}')">
                                             Delete
                                         </button>
-                                    </form>
+
+                                        <!-- Hidden form untuk submit -->
+                                        <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user) }}"
+                                            method="POST" class="hidden">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    @else
+                                        <span class="text-gray-400 italic">Protected</span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -52,4 +62,46 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Delete -->
+    <div id="deleteModal" class="fixed inset-0 z-50 hidden">
+        <!-- Overlay yang gelap tapi tidak menghalangi klik di belakang -->
+        <div class="fixed inset-0 bg-black opacity-50 pointer-events-none"></div>
+
+        <!-- Modal content -->
+        <div class="flex items-center justify-center min-h-screen px-4 relative z-10">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md">
+                <div class="p-6 text-center">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-gray-200" id="modalUserName">Hapus User</h3>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">Apakah Anda yakin ingin menghapus user ini?</p>
+                    <div class="mt-4 flex justify-center gap-4">
+                        <button onclick="closeDeleteModal()"
+                            class="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded">Batal</button>
+                        <button id="confirmDeleteBtn" class="px-4 py-2 bg-red-600 text-white rounded">Hapus</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUserId = null;
+
+        function openDeleteModal(userId, userName) {
+            currentUserId = userId;
+            document.getElementById('modalUserName').innerText = `Hapus User: ${userName}`;
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        function closeDeleteModal() {
+            currentUserId = null;
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+            if (currentUserId) {
+                document.getElementById('delete-form-' + currentUserId).submit();
+            }
+        });
+    </script>
 </x-app-layout>

@@ -34,6 +34,32 @@
                 {{ $slot }}
             </main>
         </div>
+        @if (session('error'))
+            <div x-data="{ show: true }" x-show="show" x-transition.opacity.duration.200ms
+                class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md relative">
+
+                    <!-- Judul -->
+                    <h2 class="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center gap-2">
+                        ⚠️ Akses Ditolak
+                    </h2>
+
+                    <!-- Pesan -->
+                    <p class="mt-2 text-gray-700 dark:text-gray-300">
+                        {{ session('error') }}
+                    </p>
+
+                    <!-- Tombol tutup -->
+                    <div class="mt-4 text-right">
+                        <button @click="show = false" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm">
+                            Tutup
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        @endif
+
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     </body>
 </html>

@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
                 'unique:' . User::class,
                 'regex:/@gmail\.com$/i'
             ],
-            'role' => ['nullable', 'in:admin,user'], // validasi role
+            'role' => ['nullable', 'in:developers,admin,user'], // validasi role
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ],
         [
@@ -68,7 +68,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        if ($user->role === 'admin') {
+        if ($user->role === ['developers','admin']) {
             return redirect()->intended('/dashboard');
         }
 

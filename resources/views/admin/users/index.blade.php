@@ -32,10 +32,11 @@
                                 <td class="p-2">{{ ucfirst($user->role) }}</td>
                                 <td class="p-2">{{ $user->created_at->format('d M Y') }}</td>
                                 <td class="p-2 text-center">
-                                    <a href="{{ route('users.edit', $user) }}"
-                                        class="text-blue-500 hover:underline">Edit</a>
+
 
                                     @if($user->role !== 'developers')
+                                        <a href="{{ route('users.edit', $user) }}"
+                                        class="text-blue-500 hover:underline">Edit</a>
                                         <button type="button" class="text-red-500 hover:underline"
                                             onclick="openDeleteModal({{ $user->id }}, '{{ $user->name }}')">
                                             Delete

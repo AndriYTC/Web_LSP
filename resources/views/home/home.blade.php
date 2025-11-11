@@ -7,7 +7,7 @@
     <meta name="keywords" content="LSP, Sertifikasi Profesi, Kompetensi, Pelatihan">
     <meta name="author" content="LSP Indonesia">
     <title>LSP - Lembaga Sertifikasi Profesi</title>
-    <link rel="stylesheet" href="css/style.css">
+    @vite(['resources/css/style.css', 'resources/js/script.js'])
     <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
 </head>
 <body>

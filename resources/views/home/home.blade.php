@@ -7,9 +7,41 @@
     <meta name="keywords" content="LSP, Sertifikasi Profesi, Kompetensi, Pelatihan">
     <meta name="author" content="LSP Indonesia">
     <title>LSP - Lembaga Sertifikasi Profesi</title>
-    @vite(['resources/css/style.css', 'resources/js/script.js'])
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+
+    <style>
+        /* Tambahan gaya khusus untuk menu login */
+        .nav-menu li.login-link {
+            margin-left: 15px;
+        }
+
+        .nav-menu li.login-link a {
+            border: 2px solid #007bff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            color: #007bff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li.login-link a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Responsif di mobile */
+        @media (max-width: 768px) {
+            .nav-menu li.login-link a {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+                margin-top: 8px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -23,6 +55,7 @@
                 <li><a href="#certifications" class="nav-link">Sertifikasi</a></li>
                 <li><a href="#process" class="nav-link">Proses</a></li>
                 <li><a href="#contact" class="nav-link">Kontak</a></li>
+                <li class="login-link"><a href="login.blade.php" class="nav-link">Login</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -32,36 +65,85 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-background">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-            <div class="circle circle-3"></div>
+<!-- Hero Section -->
+<section class="hero relative h-screen" id="home">
+    <!-- Background Image dengan Fixed dan Transparan -->
+    <div class="hero-background absolute inset-0 z-0" style="
+        background-image: url('img/smk.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    ">
+        <!-- Overlay Transparan -->
+        <div style="position: absolute; inset: 0; background-color: rgba(255,255,255,0.5);"></div>
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <!-- Konten Hero -->
+    <div class="container hero-content relative z-10 text-center px-4" style="padding: 100px 20px;">
+        <h1 class="hero-title">Lembaga Sertifikasi Profesi</h1>
+        <p class="hero-subtitle">Meningkatkan kompetensi profesional melalui sertifikasi berkualitas tinggi yang diakui secara nasional dan internasional</p>
+        <div class="hero-buttons">
+            <a href="#certifications" class="btn btn-primary">Lihat Sertifikasi</a>
+            <a href="#contact" class="btn btn-secondary">Hubungi Kami</a>
         </div>
-        <div class="container hero-content">
-            <h1 class="hero-title">Lembaga Sertifikasi Profesi</h1>
-            <p class="hero-subtitle">Meningkatkan kompetensi profesional melalui sertifikasi berkualitas tinggi yang diakui secara nasional dan internasional</p>
-            <div class="hero-buttons">
-                <a href="#certifications" class="btn btn-primary">Lihat Sertifikasi</a>
-                <a href="#contact" class="btn btn-secondary">Hubungi Kami</a>
+        <div class="hero-stats flex justify-center gap-8 mt-8">
+            <div class="stat-item">
+                <div class="stat-number text-2xl font-bold">1000+</div>
+                <div class="stat-label text-sm">Peserta Tersertifikasi</div>
             </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Peserta Tersertifikasi</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Skema Sertifikasi</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Tahun Pengalaman</div>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number text-2xl font-bold">50+</div>
+                <div class="stat-label text-sm">Skema Sertifikasi</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number text-2xl font-bold">15+</div>
+                <div class="stat-label text-sm">Tahun Pengalaman</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Tombol Go to Top -->
+<button id="back-to-top" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: none;
+    z-index: 50;
+">⬆</button>
+
+<script>
+    // Tombol Go to Top
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) { // tampilkan jika scroll > 300px
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+
+
 
     <!-- About Section -->
     <section class="about" id="about">
@@ -266,7 +348,7 @@
                         </svg>
                         <div>
                             <h4>Email</h4>
-                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c8a1a6aea788a4bbb8e5a1a6aca7a6adbba1a9e6aba7a5">[email&#160;protected]</a></p>
+                            <p><a href="/cdn-cgi/l/email-protection" class="_cf_email_" data-cfemail="c8a1a6aea788a4bbb8e5a1a6aca7a6adbba1a9e6aba7a5">[email&#160;protected]</a></p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -335,7 +417,7 @@
                     <h4>Hubungi Kami</h4>
                     <ul>
                         <li>+62 21 1234 5678</li>
-                        <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="87eee9e1e8c7ebf4f7aaeee9e3e8e9e2f4eee6a9e4e8ea">[email&#160;protected]</a></li>
+                        <li><a href="/cdn-cgi/l/email-protection" class="_cf_email_" data-cfemail="87eee9e1e8c7ebf4f7aaeee9e3e8e9e2f4eee6a9e4e8ea">[email&#160;protected]</a></li>
                         <li>Jl. Profesional No. 123<br>Jakarta Selatan</li>
                     </ul>
                 </div>
@@ -346,6 +428,9 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/script.js"></script>
+    <!-- (Semua bagian lain: About, Certifications, Process, Contact, Footer tetap seperti kode kamu kirim di atas) -->
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

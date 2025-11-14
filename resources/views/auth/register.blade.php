@@ -1,72 +1,65 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
 
-        <div>
-            <x-input-label for="name" :value="__('Nama')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                autofocus autocomplete="name" />
-            <!-- Input Error for Name -->
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+    <div class="bg-white/45 backdrop-blur-sm border border-white/20 shadow-2xl rounded-xl p-6">
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')"
-                autocomplete="username" />
-            <!-- Input Error for Email -->
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-900">Daftar Akun LSP</h2>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <!-- STATUS -->
+        <x-auth-session-status class="mb-4 text-center !text-gray-900" :status="session('status')" />
 
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
-                autocomplete="new-password" />
-            <!-- Input Error for Password -->
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Konfirmasi Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" autocomplete="new-password" />
-            <!-- Input Error for Confirm Password -->
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-between mt-4">
-            <div class="mt-3">
-                <!-- Tombol Kembali -->
-                <div class="left-1">
-                    <a href="{{ url('/') }}"
-                        class="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-900 dark:hover:text-white transition">
-                        <!-- Icon Panah -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" class="w-5 h-5 mr-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Kembali
-                    </a>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                    href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-
-                <x-primary-button class="ms-4">
-                    {{ __('Register') }}
-                </x-primary-button>
+            <!-- Nama Lengkap -->
+            <div class="mb-4">
+                <x-input-label for="name" :value="__('Nama Lengkap')" class="!text-gray-900" />
+                <input id="name" type="text" name="name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5"
+                    placeholder="Masukkan nama lengkap" value="{{ old('name') }}" autofocus>
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
 
-        </div>
+            <!-- Username / Email -->
+            <div class="mb-4">
+                <x-input-label for="email" :value="__('Nama Pengguna / Email')" class="!text-gray-900" />
+                <input id="email" type="email" name="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5"
+                    placeholder="Masukkan email">
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-    </form>
+            <!-- Password -->
+            <div class="mb-4">
+                <x-input-label for="password" :value="__('Kata Sandi')" class="!text-gray-900" />
+                <input id="password" type="password" name="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5"
+                    placeholder="Masukkan kata sandi">
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-4">
+                <x-input-label for="password_confirmation" :value="__('Konfirmasi Kata Sandi')"
+                    class="!text-gray-900" />
+                <input id="password_confirmation" type="password" name="password_confirmation"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5"
+                    placeholder="Ulangi kata sandi">
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
+
+            <!-- Submit -->
+            <button type="submit"
+                class="w-full text-white bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-800">
+                Daftar
+            </button>
+
+            <!-- Back -->
+            <a href="{{ url('login') }}" class="mt-3 block text-center text-sm text-gray-700 hover:text-gray-900">
+                Sudah punya akun? Masuk
+            </a>
+
+        </form>
+
+    </div>
+
 </x-guest-layout>

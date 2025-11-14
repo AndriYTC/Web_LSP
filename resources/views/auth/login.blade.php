@@ -1,68 +1,68 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" class="relative">
-        @csrf
+    <div class="bg-white/45 backdrop-blur-sm border border-white/20 shadow-2xl rounded-xl p-6">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" class="mt-6 mb-2" />
-            <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')"
-                autofocus autocomplete="username" />
-            <!-- Input Error for Email -->
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-900">Login Akun LSP</h2>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <!-- STATUS -->
+        <x-auth-session-status class="mb-4 text-center !text-gray-900" :status="session('status')" />
 
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
-                autocomplete="current-password" />
-            <!-- Input Error for Password -->
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox"
-                    class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
-                    name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-        <!-- Tombol Login -->
-        <div class="flex items-center justify-between mt-4">
-            <div class="mt-3">
-                <!-- Tombol Kembali -->
-                <div class="left-1">
-                    <a href="{{ url('/') }}"
-                        class="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-900 dark:hover:text-white transition">
-                        <!-- Icon Panah -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" class="w-5 h-5 mr-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Kembali
-                    </a>
-                </div>
-            </div>
-            <div class="flex items-center">
-                @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}"
-                        class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-primary-button class="ms-3">
-                    {{ __('Log in') }}
-                </x-primary-button>
+            <!-- Username -->
+            <div class="mb-4">
+                <x-input-label for="email" :value="__('Nama Pengguna / Email')" class="!text-gray-900"/>
+                <input id="email" type="text" name="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5"
+                    placeholder="Masukkan nama pengguna" value="{{ old('email') }}" autofocus>
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
+            <!-- Password -->
+            <div class="mb-4">
+                <x-input-label for="password" :value="__('Kata Sandi')" class="!text-gray-900"/>
+                <input id="password" type="password" name="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5"
+                    placeholder="Masukkan kata sandi">
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
+
+            <!-- Remember Me -->
+            <div class="flex items-center mb-4">
+                <input id="remember_me" type="checkbox" name="remember"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-500 rounded focus:ring-blue-500">
+                <label for="remember_me" class="ml-2 text-sm text-gray-800">Ingat saya</label>
+            </div>
+
+            <!-- Tombol Login -->
+            <button type="submit"
+                class="w-full text-white bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-800">
+                Masuk
+            </button>
+
+            <!-- Tombol Kembali -->
+            <a href="{{ url('/') }}" class="mt-3 block text-center text-sm text-gray-700 hover:text-gray-900">
+                Kembali
+            </a>
+        </form>
+
+        <!-- Footer -->
+        <div class="text-center mt-6">
+            <p class="text-gray-700">
+                Belum punya akun?
+                <a href="{{ url('register') }}" class="text-blue-600 hover:underline">
+                    Daftar Sekarang
+                </a>
+            </p>
+            <p class="text-gray-700">
+                Lupa sandi?
+                <a href="{{ url('forgot-password') }}" class="text-blue-600 hover:underline">
+                    Reset sandi
+                </a>
+            </p>
         </div>
-    </form>
+
+    </div>
 
 </x-guest-layout>

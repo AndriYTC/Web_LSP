@@ -1,39 +1,58 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+    <div class="bg-white/40 backdrop-blur-sm border border-white/20 shadow-2xl rounded-xl p-6">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-900">Reset Kata Sandi</h2>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <form method="POST" action="{{ route('password.store') }}">
+            @csrf
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <!-- Token -->
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
+            <!-- Email -->
+            <div class="mb-4">
+                <x-input-label for="email" :value="__('Email')" class="!text-gray-900" />
+                <input id="email" type="email" name="email" value="{{ old('email', $request->email) }}" required
+                    autofocus autocomplete="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                    focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
+            <!-- Password -->
+            <div class="mb-4">
+                <x-input-label for="password" :value="__('Kata Sandi Baru')" class="!text-gray-900" />
+                <input id="password" type="password" name="password" required autocomplete="new-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                    focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5" />
+
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
+
+            <!-- Confirm password -->
+            <div class="mb-4">
+                <x-input-label for="password_confirmation" :value="__('Konfirmasi Kata Sandi')"
+                    class="!text-gray-900" />
+                <input id="password_confirmation" type="password" name="password_confirmation" required
+                    autocomplete="new-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                    focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5" />
+
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
+
+            <!-- Tombol -->
+            <button type="submit" class="w-full text-white bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5
+                text-center hover:bg-blue-800">
+                Reset Kata Sandi
+            </button>
+
+            <!-- Kembali -->
+            <a href="{{ url('/') }}" class="mt-3 block text-center text-sm text-gray-700 hover:text-gray-900">
+                Kembali
+            </a>
+
+        </form>
+
+    </div>
+
 </x-guest-layout>

@@ -4,165 +4,117 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+    navbar?.classList.toggle('scrolled', window.scrollY > 50);
 });
 
 // ===== Mobile Menu Toggle =====
-hamburger.addEventListener('click', () => {
+hamburger?.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    
-    // Animate hamburger
+
     const spans = hamburger.querySelectorAll('span');
-    if (navMenu.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-    } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
+    const active = navMenu.classList.contains('active');
+
+    spans[0].style.transform = active ? 'rotate(45deg) translate(5px, 5px)' : 'none';
+    spans[1].style.opacity = active ? '0' : '1';
+    spans[2].style.transform = active ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
 });
 
-// Close mobile menu when clicking on a link
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
+// Close mobile menu when clicking link
+document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
+        const spans = hamburger?.querySelectorAll('span');
+        if (spans) {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
     });
 });
 
-// ===== Smooth Scroll for Navigation Links =====
+// ===== Smooth Scroll =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offsetTop = target.offsetTop - 80;
+            e.preventDefault();
             window.scrollTo({
-                top: offsetTop,
+                top: target.offsetTop - 80,
                 behavior: 'smooth'
             });
         }
     });
 });
 
-// ===== Intersection Observer for Scroll Animations =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+// ===== Scroll Animation Observer =====
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+}, { threshold: 0.1, rootMargin: '-100px 0px 0px 0px' });
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe all cards
-const cards = document.querySelectorAll('.about-card, .cert-card, .process-card');
-cards.forEach(card => {
+document.querySelectorAll('.about-card, .cert-card, .process-card').forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.1}s`;
     observer.observe(card);
 });
 
-// ===== Contact Form Handling =====
+// ===== Contact Form =====
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
+contactForm?.addEventListener('submit', e => {
     e.preventDefault();
-    
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Here you would typically send the data to a server
-    console.log('Form submitted:', formData);
-    
-    // Show success message
-    alert('Terima kasih! Pesan Anda telah berhasil dikirim. Kami akan segera menghubungi Anda.');
-    
-    // Reset form
+    alert('Terima kasih! Pesan Anda telah berhasil dikirim.');
     contactForm.reset();
 });
 
 // ===== Active Navigation Link =====
 const sections = document.querySelectorAll('section[id]');
-
-function setActiveNav() {
+const setActiveNav = () => {
     const scrollY = window.pageYOffset;
-
     sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLink?.classList.add('active');
-        } else {
-            navLink?.classList.remove('active');
-        }
+        const top = section.offsetTop - 100;
+        const bottom = top + section.offsetHeight;
+        const link = document.querySelector(`.nav-link[href="#${section.id}"]`);
+        link?.classList.toggle('active', scrollY > top && scrollY <= bottom);
     });
-}
-
+};
 window.addEventListener('scroll', setActiveNav);
 
-// ===== Add Stagger Animation to Cards =====
-cards.forEach((card, index) => {
-    card.style.transitionDelay = `${index * 0.1}s`;
-});
-
-// ===== Parallax Effect for Hero Background =====
+// ===== Parallax Effect =====
 const heroBackground = document.querySelector('.hero-background');
-
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    if (heroBackground) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
+    if (heroBackground) heroBackground.style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
 });
 
-// ===== Form Input Animation =====
-const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
-
-formInputs.forEach(input => {
-    input.addEventListener('focus', function() {
-        this.parentElement.classList.add('focused');
-    });
-    
-    input.addEventListener('blur', function() {
-        if (this.value === '') {
-            this.parentElement.classList.remove('focused');
-        }
-    });
+// ===== Input Animation =====
+document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+    input.addEventListener('focus', () => input.parentElement.classList.add('focused'));
+    input.addEventListener('blur', () => !input.value && input.parentElement.classList.remove('focused'));
 });
 
-// ===== Initialize animations on page load =====
+// ===== Page Loaded =====
 window.addEventListener('load', () => {
-    // Trigger initial check for visible elements
     setActiveNav();
-    
-    // Add loaded class to body for any CSS animations
     document.body.classList.add('loaded');
 });
 
-// ===== Prevent default form submission behavior =====
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+// =======================================
+// ===== Dropdown User Login (Blade) =====
+// =======================================
+// Dropdown User
+document.addEventListener("DOMContentLoaded", function () {
+    const dropdownBtn = document.querySelector(".dropdown-btn");
+    const dropdown = document.querySelector(".dropdown");
+
+    if (dropdownBtn) {
+        dropdownBtn.addEventListener("click", () => {
+            dropdown.classList.toggle("show");
+        });
+    }
+
+    // Tutup dropdown jika klik di luar
+    document.addEventListener("click", function (e) {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove("show");
+        }
     });
 });
+

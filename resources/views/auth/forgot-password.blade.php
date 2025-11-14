@@ -1,43 +1,51 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Lupa kata sandi? Tidak masalah. Cukup beri tahu kami alamat email Anda, dan kami akan mengirimkan tautan pengaturan ulang kata sandi melalui email agar Anda dapat memilih kata sandi baru.') }}
+
+    <div class="bg-white/45 backdrop-blur-sm border border-white/20 shadow-2xl rounded-xl p-6">
+
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-900">Reset Kata Sandi</h2>
+
+        <div class="mb-4 text-sm text-gray-900 text-center">
+            Lupa kata sandi? Tidak masalah. Masukkan alamat email Anda dan kami akan mengirim tautan reset sandi.
+        </div>
+        <x-auth-session-status class="mb-4 text-center !text-gray-900" :status="session('status')" />
+
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+
+            <!-- Email -->
+            <div class="mb-4">
+                <x-input-label for="email" :value="__('Email')" class="!text-gray-900" />
+                <input id="email" type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                           focus:ring-blue-500 focus:border-blue-500 block w-full mt-1 p-2.5"
+                    placeholder="Masukkan email Anda" value="{{ old('email') }}" autofocus>
+                <x-input-error :messages="$errors->get('email')" class="mt-2 !text-gray-900" />
+            </div>
+
+            <button type="submit" class="w-full text-white bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5
+                       text-center hover:bg-blue-800">
+                Kirim Tautan Reset
+            </button>
+
+            <a href="{{ url('/') }}" class="mt-3 block text-center text-sm text-gray-700 hover:text-gray-900">
+                Kembali
+            </a>
+        </form>
+
+        <div class="text-center mt-6">
+            <p class="text-gray-700">
+                Sudah ingat kata sandi?
+                <a href="{{ url('login') }}" class="text-blue-600 hover:underline">
+                    Masuk
+                </a>
+            </p>
+            <p class="text-gray-700">
+                Belum punya akun?
+                <a href="{{ url('register') }}" class="text-blue-600 hover:underline">
+                    Daftar Sekarang
+                </a>
+            </p>
+        </div>
+
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-between mt-4">
-            <div class="mt-3">
-                <!-- Tombol Kembali -->
-                <div class="left-1">
-                    <a href="{{ url('/') }}"
-                        class="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-900 dark:hover:text-white transition">
-                        <!-- Icon Panah -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" class="w-5 h-5 mr-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Kembali
-                    </a>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <x-primary-button>
-                    {{ __('kirim') }}
-                </x-primary-button>
-            </div>
-
-        </div>
-    </form>
 </x-guest-layout>

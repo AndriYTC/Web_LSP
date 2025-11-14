@@ -38,7 +38,6 @@ class RegisteredUserController extends Controller
                 'email',
                 'max:255',
                 'unique:' . User::class,
-                'regex:/@gmail\.com$/i'
             ],
             'role' => ['nullable', 'in:developers,admin,user'], // validasi role
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -47,10 +46,8 @@ class RegisteredUserController extends Controller
             'name.required' => 'Nama wajib diisi',
             'name.unique' => 'Nama sudah digunakan',
             'name.max' => 'Nama maksimal 255 karakter',
-            'email.required' => 'Email wajib diisi',
-            'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah digunakan',
-            'email.regex' => 'format email harus "example@gmail.com"',
+            'email.required' => 'Email / Nama Pengguna wajib diisi',
+            'email.unique' => 'Email / Nama Pengguna sudah digunakan',
             'password.required' => 'Password wajib diisi',
             'password.confirmed' => 'Konfirmasi password tidak sesuai',
             'password.min' => 'Password minimal 8 karakter',

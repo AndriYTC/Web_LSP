@@ -9,6 +9,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 Route::get('/', function () {
     return view('home.home');
 });
+Route::get('/test', function () {
+    dd(auth()->check(), auth()->user());
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

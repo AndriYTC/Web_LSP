@@ -127,7 +127,7 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown.show .dropdown-menu {
+.navbar .dropdown.show .dropdown-menu {
     display: block;
     animation: dropdownFade 0.3s ease forwards;
 }
@@ -461,7 +461,7 @@ body {
 }
 
 .stat-label {
-    color: var(--text-light);
+    color: black;
     font-size: 0.95rem;
 }
 

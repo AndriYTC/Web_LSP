@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+<<<<<<< HEAD
     body {
       font-family: 'Poppins', sans-serif;
     }
@@ -25,6 +26,24 @@
       animation: fadeIn 0.7s ease-in;
     }
 
+=======
+    body { 
+      font-family: 'Poppins', sans-serif; 
+    }
+    
+    .testimonial-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.7s ease-in;
+    }
+    
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -35,11 +54,19 @@
         transform: translateY(0);
       }
     }
+<<<<<<< HEAD
 
     .slide-in {
       animation: slideIn 0.7s ease-out;
     }
 
+=======
+    
+    .slide-in {
+      animation: slideIn 0.7s ease-out;
+    }
+    
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     @keyframes slideIn {
       from {
         opacity: 0;
@@ -50,40 +77,72 @@
         transform: translateY(0);
       }
     }
+<<<<<<< HEAD
 
     .stat-card {
       transition: all 0.3s ease;
     }
 
+=======
+    
+    .stat-card {
+      transition: all 0.3s ease;
+    }
+    
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     .stat-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
+<<<<<<< HEAD
 
     .filter-btn {
       transition: all 0.3s ease;
     }
 
+=======
+    
+    .filter-btn {
+      transition: all 0.3s ease;
+    }
+    
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     .filter-btn.active {
       background: linear-gradient(to right, #2563eb, #4f46e5);
       color: white;
       transform: scale(1.05);
     }
+<<<<<<< HEAD
 
     .carousel-dot {
       transition: all 0.3s ease;
     }
 
+=======
+    
+    .carousel-dot {
+      transition: all 0.3s ease;
+    }
+    
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     .carousel-dot.active {
       width: 2rem;
       background-color: #2563eb;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     .glass-effect {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     .hero-pattern {
       background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fff' fill-opacity='0.1'%3E%3Cpath d='M36 34c0-2.21-1.79-4-4-4s-4 1.79-4 4 1.79 4 4 4 4-1.79 4-4zm0-10c0-2.21-1.79-4-4-4s-4 1.79-4 4 1.79 4 4 4 4-1.79 4-4zm0-10c0-2.21-1.79-4-4-4s-4 1.79-4 4 1.79 4 4 4 4-1.79 4-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
@@ -457,8 +516,13 @@
       <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
         Daftar sekarang dan tingkatkan kompetensi profesional Anda bersama ribuan peserta lainnya!
       </p>
+<<<<<<< HEAD
       <a href="{{ url('/') }}" class="inline-block bg-white border-2 border-black text-blue-700 hover:bg-blue-50 font-semibold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
         Kembali ke Beranda
+=======
+      <a href="#" class="inline-block bg-white text-blue-700 hover:bg-blue-50 font-semibold px-8 py-4 text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+        Daftar Sekarang
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
       </a>
     </div>
   </section>
@@ -495,7 +559,11 @@
         const suffix = stat.textContent.includes('%') ? '%' : '+';
         let current = 0;
         const increment = target / 50;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
         const timer = setInterval(() => {
           current += increment;
           if (current >= target) {
@@ -529,12 +597,20 @@
         // Update active button
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
         // Get filter value
         const filter = button.getAttribute('data-filter');
         currentFilter = filter;
         currentIndex = 0;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
         // Filter cards
         testimonialCards.forEach(card => {
           if (filter === 'all' || card.getAttribute('data-category') === filter) {
@@ -573,11 +649,19 @@
       const filtered = getFilteredTestimonials();
       const content = document.getElementById('carousel-content');
       const dots = document.getElementById('carousel-dots');
+<<<<<<< HEAD
 
       if (filtered.length === 0) return;
 
       const testimonial = filtered[currentIndex];
 
+=======
+      
+      if (filtered.length === 0) return;
+      
+      const testimonial = filtered[currentIndex];
+      
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
       content.innerHTML = `
         <svg class="w-8 h-8 text-blue-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
           <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
@@ -597,7 +681,11 @@
         </div>
         <p class="text-gray-700 leading-relaxed italic">"${testimonial.text}"</p>
       `;
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
       // Update dots
       dots.innerHTML = '';
       filtered.forEach((_, index) => {
@@ -628,4 +716,8 @@
   </script>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08

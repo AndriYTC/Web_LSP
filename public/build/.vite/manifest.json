@@ -1,10 +1,14 @@
 {
   "resources/css/app.css": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "file": "assets/app-_VeVTSBT.css",
 =======
     "file": "assets/app-q-b-o87s.css",
 >>>>>>> 1c1781bd7b705bf968e15e3d4a1eaa0cc55d66a0
+=======
+    "file": "assets/app-q-b-o87s.css",
+>>>>>>> 21fd36a4ccd71be4c73058e9b909442b5b4a8c08
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",

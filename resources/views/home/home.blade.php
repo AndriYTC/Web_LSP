@@ -24,7 +24,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">Beranda</a></li>
                 <li><a href="#about" class="nav-link">Tentang</a></li>
-                <li><a href="#certifications" class="nav-link">Sertifikasi</a></li>
+                <li><a href="{{ url('sertifikasi') }}" class="nav-link">Sertifikasi</a></li>
                 <li><a href="#process" class="nav-link">Proses</a></li>
                 <li><a href="#contact" class="nav-link">Kontak</a></li>
 
@@ -46,7 +46,7 @@
                     </li>
                 @else
                     <li class="login-link">
-                        <a href="{{ route('login') }}" class="nav-link">Login</a>
+                        <a href="{{ route('login') }}" class="nav-link">Get Started</a>
                     </li>
                 @endif
             </ul>
@@ -83,7 +83,7 @@
             <p class="hero-subtitle">Meningkatkan kompetensi profesional melalui sertifikasi berkualitas tinggi yang
                 diakui secara nasional dan internasional</p>
             <div class="hero-buttons">
-                <a href="#certifications" class="btn btn-primary">Lihat Sertifikasi</a>
+                <a href="{{ url('testimoni') }}" class="btn btn-primary">Lihat tertimoni</a>
                 <a href="#contact" class="btn btn-secondary">Hubungi Kami</a>
             </div>
             <div class="hero-stats flex justify-center gap-8 mt-8">

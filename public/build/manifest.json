@@ -1,6 +1,10 @@
 {
   "resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-_VeVTSBT.css",
+=======
+    "file": "assets/app-q-b-o87s.css",
+>>>>>>> 1c1781bd7b705bf968e15e3d4a1eaa0cc55d66a0
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -9,7 +13,7 @@
     ]
   },
   "resources/css/home.css": {
-    "file": "assets/home-B-PnvQb1.css",
+    "file": "assets/home-BZL5CdSM.css",
     "src": "resources/css/home.css",
     "isEntry": true,
     "name": "home",

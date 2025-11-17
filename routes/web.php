@@ -9,6 +9,12 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 Route::get('/', function () {
     return view('home.home');
 });
+Route::get('/testimoni', function () {
+    return view('home.testimoni');
+});
+Route::get('/sertifikasi', function () {
+    return view('home.sertifikasi');
+});
 Route::get('/test', function () {
     dd(auth()->check(), auth()->user());
 });

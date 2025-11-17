@@ -64,8 +64,8 @@
     <section class="hero relative h-screen" id="home">
         <!-- Background Image dengan Fixed dan Transparan -->
         <div class="hero-background absolute inset-0 z-0" style="
-        background-image: url('img/pendaftaran.jpg');
-        background-size: contain;
+        background-image: url('img/smk.png');
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         background-attachment: fixed;

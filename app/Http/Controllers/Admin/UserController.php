@@ -12,12 +12,12 @@ class UserController extends Controller
     {
         $this->middleware(function ($request, $next) {
             // Jika belum login atau bukan admin
-            if (!auth()->check() || auth()->user()->role !== 'admin') {
-                // Redirect ke dashboard dengan pesan error
+            if (!auth()->check() || !in_array(auth()->user()->role, ['admin', 'developers'])) {
                 return redirect()
                     ->route('dashboard')
                     ->with('error', 'Anda tidak memiliki akses ke halaman ini.');
             }
+
 
             return $next($request);
         });
@@ -45,6 +45,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if ($user->role === 'developer') {
+            return back()->with('error', 'User dengan role developer tidak dapat diubah.');
+        }
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
@@ -61,11 +64,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->role === 'developers') {
+            return back()->with('error', 'User dengan role developer tidak dapat dihapus.');
+        }
+
         if ($user->id === auth()->id()) {
-            return back()->with('error', 'You cannot delete yourself.');
+            return back()->with('error', 'Tidak dapat menghapus diri sendiri.');
         }
 
         $user->delete();
-        return back()->with('success', 'User deleted successfully.');
+        return back()->with('success', 'User berhasil dihapus.');
     }
 }

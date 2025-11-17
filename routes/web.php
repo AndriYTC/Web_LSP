@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.home');
 });
 Route::get('home', function () {
     return view('tampilan.home');

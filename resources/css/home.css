@@ -74,10 +74,10 @@ body {
 
 .nav-menu li.login-link a {
     border: 2px solid #ff0037;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 8px 14px;
+    border-radius: 3px;
     color: #000000;
-    font-weight: 500;
+    font-weight: 530;
     transition: none;
 }
 
